@@ -1,24 +1,45 @@
-# vue2-daily-premium-b-side
+# 每日优鲜 B 端项目
 
-## Project setup
-```
-npm install
-```
+Vue2 Ant-design
+Vuex VueRouter Axios
+eslint less
+v-charts js-cookie
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 整体布局
 
-### Compiles and minifies for production
-```
-npm run build
-```
+两列布局左侧固宽右侧自适应
+左侧菜单栏:根据用户类别路由拦截动态获取菜单栏显示路由
+右侧上吊顶固定 (面包屑,用户信息移入退出)
+右下侧路由渲染 router-view
 
-### Lints and fixes files
-```
-npm run lint
-```
+### 登入和注册界面
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+前置路由守卫没有登入跳转登入页面判断权限获取菜单结构
+登入表单校验
+提交成功 vuex 存储用户信息(name,email,appkey）
+路由守卫访问路径不带...请求接口需要附带 appkey
+
+### 统计界面(默认跳转)
+
+1. 卡片展示
+2. 图表 vcharts
+
+### 商品列表界面
+
+筛选 form 表单(商品类目读取，input 下拉列表) 新增商品按钮
+渲染 v-for 商品信息，map 替换类名和上架状态
+分页组件
+编辑和删除方法写入跳转
+
+附加功能：批量处理
+
+### 新增/编辑商品界面
+
+新增：商品录入，销售信息录入(流程化表单)
+两个子组件，共用父组件数据 data
+表单校验，商品类目子列表获取
+
+销售组件图片信息上传
+
+新增和编辑的区分，created 父组件跳入判断 roue 是否有 id 为编辑(接口不同)
+编辑读取数据，创建空数据
