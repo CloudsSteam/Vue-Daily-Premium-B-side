@@ -19,7 +19,7 @@
     </div>
 
     <ul class="user-info">
-      <li>欢迎Cloudsteam
+      <li>{{this.$store.state.user.username}}
         <a-icon type="down" />
       </li>
       <li @click="cancelLogin">退出</li>

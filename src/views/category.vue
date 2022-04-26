@@ -1,7 +1,8 @@
 <template>
-  <div class="index">
-    <h1>统计</h1>
+  <div class="category">
+    <h1>类目管理</h1>
   </div>
+
 </template>
 
 <script>

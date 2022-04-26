@@ -1,6 +1,6 @@
 # 每日优鲜 B 端项目
 
-Vue2 Ant-design
+Vue2 Ant-design-vue
 Vuex VueRouter Axios
 eslint less
 v-charts js-cookie
@@ -21,7 +21,13 @@ Form 表单创建校验后调用登入接口返回
 
 axios 接口 request 请求拦截判断是否需要带上 appkey
 
-判断权限获取菜单结构
+> 判断权限获取菜单结构
+
+- 根据权限 map 映射把 ayncRouterMap 筛选成对应角色菜单路由//注意子类筛选
+- 把路由拼接新的菜单路由存储到 vuex
+- 异步完成后菜单路由 addRoute 方法添加到 router 中报备
+
+对于不想显示的菜单路由 meta 中加上 hidden:true 属性，在 menu 组件中判断渲染(注意两次 template 的书写)
 
 ### 统计界面(默认跳转)
 

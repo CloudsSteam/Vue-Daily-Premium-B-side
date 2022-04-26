@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { setCookie, getUserCookie, removeUserCookie } from '../plugins/cookie';
+import { setCookie, getUserCookie, removeUserCookie } from '../utils/cookie';
 
 Vue.use(Vuex);
 
@@ -9,7 +9,7 @@ export default new Vuex.Store({
     collapsed: false,
     remember: '', // 取反无效
     user: getUserCookie(),
-
+    roleRouter: {}, // 把路由拼接菜单路一起存储起来
   },
   mutations: {
     setCollapsed(state) {
@@ -29,6 +29,9 @@ export default new Vuex.Store({
         email: '',
       };
     },
+    changeMenuRoutes(state, menuRoutes) {
+      state.roleRouter = menuRoutes;
+    },
   },
   actions: {
     setCollapsed({ commit }) {
@@ -44,6 +47,9 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('logout');
       removeUserCookie();
+    },
+    changeMenuRoutes({ commit }, menuRoutes) {
+      commit('changeMenuRoutes', menuRoutes);
     },
   },
   modules: {

@@ -1,7 +1,8 @@
 <template>
-  <div class="index">
-    <h1>统计</h1>
+  <div class="productAdd-container">
+    <h1>产品添加</h1>
   </div>
+
 </template>
 
 <script>
