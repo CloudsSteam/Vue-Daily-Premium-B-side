@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Menu class="menu" />
-    <div class="main-container">
+    <div :class="{'main-container':true,'systolic':$store.state.collapsed}">
       <sliderNav />
       <router-view></router-view>
     </div>
@@ -24,9 +24,43 @@ export default {
 <style lang="less">
 .home {
   // position: relative;
-
   .main-container {
+    transition: all 0.3s;
     margin-left: 200px;
+    &.systolic {
+      margin-left: 80px;
+    }
+    .navTop {
+      height: 50px;
+      line-height: 50px;
+      padding-left: 50px;
+      border-bottom: 1px solid #eee;
+      .breadcrumb {
+        display: inline-block;
+        margin-left: 20px;
+      }
+      .user-info {
+        float: right;
+        cursor: pointer;
+        text-align: center;
+        li {
+          padding: 0 20px;
+        }
+        li:not(:first-child) {
+          display: none;
+          &:hover {
+            background-color: #eee;
+            color: #999;
+            // font-weight: bold;
+          }
+        }
+        &:hover {
+          li {
+            display: block;
+          }
+        }
+      }
+    }
   }
 }
 </style>
