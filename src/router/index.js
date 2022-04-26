@@ -40,7 +40,11 @@ const router = new VueRouter({
 let isAddRoutes = false;
 router.beforeEach((to, from, next) => {
   if (to.path !== '/login') {
-    if (store.state.user.appkey && store.state.user.username && store.state.user.role) {
+    if (store.state.user.appkey
+      && store.state.user.username
+      && store.state.user.role) { // vuex中是否有user
+      // && store.state.remember  if (!store.state.number) { // 是否记住登入,逻辑有问题拦截不了
+
       if (!isAddRoutes) {
         // const menuRoutes = getMenuRoutes(store.state.user.role, ayncRouterMap);
         // store.dispatch('changeMenuRoutes', routes.concat(menuRoutes)).then(() => {
@@ -49,6 +53,8 @@ router.beforeEach((to, from, next) => {
         // });
         isAddRoutes = true;
       }
+
+      // }
       return next();
     }
     return next('/login');

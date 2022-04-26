@@ -10,8 +10,13 @@
         <a-input
           v-decorator="[
           'email',
-          { rules: [{ required: true, message: 'Please input your email !' }] }
-        ]"
+          {
+            rules: [
+            { required: true, message: 'Please input your email !' },
+            {pattern:/^[\w-]+@[\w.-]+.com$/, message: 'Enter the correct email format !'}
+            ]
+          },
+]"
           placeholder="Email"
         >
           <a-icon
@@ -25,7 +30,11 @@
         <a-input
           v-decorator="[
           'password',
-          { rules: [{ required: true, message: 'Please input your Password!' }] }
+          {
+            rules: [
+            { required: true, message: 'Please input your Password!' }
+            ]
+          },
         ]"
           type="password"
           placeholder="Password"
@@ -38,7 +47,7 @@
         </a-input>
       </a-form-item>
       <a-form-item>
-        <!-- <a-checkbox v-decorator="[
+        <a-checkbox v-decorator="[
           'remember',
           {
             valuePropName: 'checked',
@@ -46,10 +55,10 @@
           }
         ]">
           Remember me
-        </a-checkbox> -->
+        </a-checkbox>
         <a
           class="login-form-forgot"
-          href=""
+          href="https://mallapi.duyiedu.com/login/#/login"
         >
           Forgot password
         </a>
@@ -60,7 +69,7 @@
         >
           Log in
         </a-button>
-        Or <a href="">
+        Or <a href="https://mallapi.duyiedu.com/login/#/register">
           register now!
         </a>
       </a-form-item>
@@ -74,7 +83,7 @@ import loginApi from '@/api/login';
 export default {
   data() {
     return {
-      // remember: true,
+      remember: '',
       loginInfo: {
         email: '',
         password: '',
@@ -84,23 +93,19 @@ export default {
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },
-  create() {
-    // this.$store.state.user;
-  },
+
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((err, values) => {
+      this.form.validateFields((err, values) => { // ('Received values of form: ', values)
         if (!err) {
-          // this.remember = values.remember;
-          // console.log(this.remember);
+          this.remember = values.remember;
+          // 存储是否需要remember到vuex
+          this.$store.dispatch('changeRemember', this.remember);
+          // console.log(values);//校验后的表单数据
 
-          console.log(values);
-
-          // this.loginInfo = values;
-          // console.log(this.loginInfo);
           loginApi.login(values).then((res) => {
-            console.log(res);
+            // console.log(res);//接口返回结果
             this.$store.dispatch('setUserInfo', res);
             this.$router.push({
               name: 'Home',
@@ -109,7 +114,6 @@ export default {
             // console.log(error);
             this.$message.error(error);
           });
-          console.log('Received values of form: ', values);
         }
       });
     },
