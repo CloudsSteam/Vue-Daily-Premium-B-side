@@ -26,6 +26,9 @@ export default {
   // position: relative;
   .main-container {
     transition: all 0.3s;
+    // width: calc(100% - 200px);
+    // width: 89%;
+    overflow-x: hidden;
     margin-left: 200px;
     &.systolic {
       margin-left: 80px;
@@ -33,14 +36,14 @@ export default {
     .navTop {
       height: 50px;
       line-height: 50px;
-      padding-left: 50px;
+      padding-left: 30px;
       border-bottom: 1px solid #eee;
       .breadcrumb {
         display: inline-block;
         margin-left: 20px;
       }
       .user-info {
-        float: right;
+        // float: right;
         cursor: pointer;
         text-align: center;
         li {
@@ -54,9 +57,11 @@ export default {
             // font-weight: bold;
           }
         }
+
         &:hover {
           li {
             display: block;
+            z-index: 5;
           }
         }
       }

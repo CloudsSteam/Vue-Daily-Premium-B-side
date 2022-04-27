@@ -1,14 +1,24 @@
 <template>
-  <div class="index">
-    <h1>统计</h1>
+  <div class="index-container">
+    <card />
+    <vcharts />
   </div>
+
 </template>
-
 <script>
-export default {
+import card from '@/components/card.vue';
+import vcharts from '@/components/vcharts.vue';
 
+export default {
+  data() {
+    return {
+
+    };
+  },
+  components: {
+    card, vcharts,
+  },
 };
 </script>
-
-<style>
+<style lang="less" scoped>
 </style>
