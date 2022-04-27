@@ -98,9 +98,9 @@ const router = new VueRouter({
 let isAddRoutes = false;
 router.beforeEach((to, from, next) => {
   if (to.path !== '/login') {
-    if (store.state.user.appkey
+    if ((store.state.user.appkey
       && store.state.user.username
-      && store.state.user.role) { // vuex中是否有user
+      && store.state.user.role)) { // vuex中是否有user
       // && store.state.remember  if (!store.state.number) { // 是否记住登入,逻辑有问题拦截不了
 
       if (!isAddRoutes) {

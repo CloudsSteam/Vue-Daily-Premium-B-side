@@ -10,15 +10,18 @@
     <div class="breadcrumb">
       <a-breadcrumb>
         <a-breadcrumb-item>
-          首页
+          {{currentRoute[0] ? currentRoute[0].meta.title: ''}}
         </a-breadcrumb-item>
         <a-breadcrumb-item>
-          统计
+          <router-link :to="{name: currentRoute[1].name}">
+            {{currentRoute[1] ? currentRoute[1].meta.title: ''}}
+          </router-link>
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
 
-    <ul class="user-info">
+    <ul class="
+        user-info">
       <li>{{this.$store.state.user.username}}
         <a-icon type="down" />
       </li>
@@ -32,11 +35,22 @@ export default {
   data() {
     return {
       // collapsed: false,
+      currentRoute: this.$router.currentRoute.matched, // 简写
     };
+  },
+  // mounted: {
+
+  // },
+  watch: {
+    $route() {
+      this.currentRoute = this.$router.currentRoute.matched; // 路由更新重新渲染
+      console.log(this.$router);
+    },
   },
   methods: {
     toggleCollapsed() {
       // this.collapsed = !this.collapsed;
+
       this.$store.dispatch('setCollapsed');
     },
     cancelLogin() {
