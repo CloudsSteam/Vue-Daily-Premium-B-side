@@ -15,6 +15,7 @@
   </a-table>
 </template>
 <script>
+
 const columns = [
   {
     title: 'ID',
@@ -99,6 +100,7 @@ export default {
       this.$emit('change', page);
     },
     editProduct(record) {
+      // console.log(record);
       this.$emit('edit', record);
     },
     removeProduct(record) {

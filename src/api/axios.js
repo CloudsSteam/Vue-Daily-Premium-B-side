@@ -6,7 +6,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  console.log(config);
+  // console.log(config);
   if (config.url.includes('/passport')) {
     return config;
   }

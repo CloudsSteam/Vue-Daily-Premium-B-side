@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <Menu class="menu" />
+    <Menu
+      :key="key"
+      class="menu"
+    />
     <div :class="{'main-container':true,'systolic':$store.state.collapsed}">
       <sliderNav />
       <router-view></router-view>
@@ -14,6 +17,16 @@ import Menu from '../components/Layout/Menu.vue';
 import sliderNav from '../components/Layout/sliderNav.vue';
 
 export default {
+  data() {
+    return {
+      key: new Date().getTime(),
+    };
+  },
+  watch: {
+    $route() {
+      this.key = new Date().getTime();
+    },
+  },
   components: {
     Menu,
     sliderNav,
@@ -44,6 +57,9 @@ export default {
       }
       .user-info {
         // float: right;
+        position: fixed;
+        right: 0;
+        top: 0px;
         cursor: pointer;
         text-align: center;
         li {

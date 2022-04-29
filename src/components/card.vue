@@ -40,6 +40,7 @@ export default {
 <style lang="less" scoped>
 .card {
   margin: 0px 0 50px 6px;
+  padding-top: 50px;
   // margin-left: 6px;
 }
 </style>

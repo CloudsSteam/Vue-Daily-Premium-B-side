@@ -13,12 +13,14 @@
       :page="page"
       @change="changePage"
       :categoryList="categoryList"
+      @edit="editProduct"
+      @remove="removeProduct"
     />
   </div>
 </template>
 
 <script>
-import Search from '@/components/from.vue';
+import Search from '@/components/searchFrom.vue';
 import Table from '@/components/productsTable.vue';
 import product from '@/api/product';
 import CategoryApi from '@/api/category';
@@ -76,6 +78,32 @@ export default {
       // console.log(page);
       this.page = page;
       this.getTableData();
+    },
+    editProduct(record) {
+      this.$router.push({
+        name: 'ProductEdit',
+        params: {
+          id: record.id,
+        },
+      });
+    },
+    removeProduct(record) {
+      this.$confirm({
+        title: '确认删除',
+        content: () => <div style="color:red;">{`确认删除标题为:${record.title}的商品吗`}</div>,
+        onOk: () => {
+          product.remove({
+            id: record.id,
+          }).then(() => {
+            console.log(this);
+            this.getTableData();
+          });
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+        class: 'confirm-box',
+      });
     },
   },
 };

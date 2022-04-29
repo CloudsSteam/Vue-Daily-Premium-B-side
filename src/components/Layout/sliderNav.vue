@@ -46,7 +46,7 @@ export default {
   watch: {
     $route() {
       this.currentRoute = this.$router.currentRoute.matched; // 路由更新重新渲染
-      console.log(this.$router);
+      // console.log(this.$router);
     },
   },
   methods: {
