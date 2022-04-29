@@ -20,12 +20,14 @@
       </a-breadcrumb>
     </div>
 
-    <ul class="
-        user-info">
+    <ul class="user-info">
       <li>{{this.$store.state.user.username}}
         <a-icon type="down" />
       </li>
-      <li @click="cancelLogin">退出</li>
+      <li
+        class="exit"
+        @click="cancelLogin"
+      >退出</li>
     </ul>
   </div>
 </template>
@@ -68,5 +70,10 @@ export default {
   position: fixed;
   right: 0;
   top: 0px;
+  // .exit {
+  //   position: absolute;
+  //   bottom: -50px;
+  //   right: 30px;
+  // }
 }
 </style>

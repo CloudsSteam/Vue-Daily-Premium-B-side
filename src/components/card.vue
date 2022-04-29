@@ -39,7 +39,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .card {
-  margin-top: 50px;
-  margin-left: 6px;
+  margin: 0px 0 50px 6px;
+  // margin-left: 6px;
 }
 </style>

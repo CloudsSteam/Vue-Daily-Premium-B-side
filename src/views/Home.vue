@@ -47,7 +47,7 @@ export default {
         cursor: pointer;
         text-align: center;
         li {
-          padding: 0 20px;
+          padding: 0 40px;
         }
         li:not(:first-child) {
           display: none;
@@ -57,11 +57,10 @@ export default {
             // font-weight: bold;
           }
         }
-
         &:hover {
           li {
             display: block;
-            z-index: 5;
+            // z-index: 5;
           }
         }
       }
