@@ -105,8 +105,8 @@ export default {
           // console.log(values);//校验后的表单数据
 
           loginApi.login(values).then((res) => {
-            // console.log(res);//接口返回结果
-            this.$store.dispatch('setUserInfo', res);
+            console.log(res);// 接口返回登入响应值
+            this.$store.dispatch('setUserInfo', res);// 用户登入返回值存入vuex
             this.$router.push({
               name: 'Home',
             });

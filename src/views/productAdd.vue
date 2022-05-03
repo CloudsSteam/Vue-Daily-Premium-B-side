@@ -63,7 +63,7 @@ export default {
   },
   created() {
     const { id } = this.$route.params;
-    console.log(id);
+    console.log(id || '新增');
     if (id) {
       // 读取商品详情
       api.detail(id).then((res) => {

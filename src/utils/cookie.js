@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 export function setCookie(info) {
-  const arr = Object.entries(info);
+  const arr = Object.entries(info);// 返回一个给定对象自身可枚举属性的键值对数组
   for (let i = 0; i < arr.length; i += 1) {
     Cookies.set(arr[i][0], arr[i][1]);
   }
