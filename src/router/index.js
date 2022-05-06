@@ -5,6 +5,19 @@ import Home from '../views/Home.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
+// 解决重定向报错
+const originalPush = VueRouter.prototype.push;
+const originalReplace = VueRouter.prototype.replace;
+// push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject);
+  return originalPush.call(this, location).catch((err) => err);
+};
+// replace
+VueRouter.prototype.replace = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject);
+  return originalReplace.call(this, location).catch((err) => err);
+};
 
 const ayncRouterMap = [{
   path: '/product',
@@ -95,6 +108,9 @@ const router = new VueRouter({
   routes,
 });
 
+// 每次判断跳转路由，如果跳转不是login页面，判断vuex中是否已经登入，登入了就next，没登入就login
+// 跳转是login直接next
+// 有用户信息，跳index页面也要
 let isAddRoutes = false;
 router.beforeEach((to, from, next) => {
   if (to.path !== '/login') {
@@ -102,7 +118,9 @@ router.beforeEach((to, from, next) => {
       && store.state.user.username
       && store.state.user.role)) { // vuex中是否有user
       // && store.state.remember  if (!store.state.number) { // 是否记住登入,逻辑有问题拦截不了
-
+      // if (to.path === '/index') {
+      //   next();
+      // }
       if (!isAddRoutes) {
         const menuRoutes = getMenuRoute(store.state.user.role, ayncRouterMap);
         // 根据权限map映射把ayncRouterMap筛选成对应角色菜单路由
@@ -117,7 +135,6 @@ router.beforeEach((to, from, next) => {
         });
         isAddRoutes = true;
       }
-
       // }
       return next();
     }
